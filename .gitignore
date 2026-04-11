@@ -1,0 +1,30 @@
+# Environments
+.venv/
+env/
+venv/
+.env
+
+# Python junk
+__pycache__/
+*.py[cod]
+
+# Large Model Files (They stay on Hugging Face, not Git)
+models/
+models/LlammaLocalModel
+model_gguf/
+model_gguf_gguf/
+models/*.gguf
+outputs/
+*.gguf
+*.safetensors
+*.bin
+*.pth
+
+# Logs & cache
+*.log
+cache/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
