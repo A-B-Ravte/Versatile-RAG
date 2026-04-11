@@ -8,7 +8,7 @@ class ParagraphChunker(BaseChunker):
         new_chunks = []
         
         for parent in chunks:
-            # Use .chunk_text (dot notation)
+            
             paragraphs = [p.strip() for p in parent.chunk_text.split("\n\n") if p.strip()]
             
             for i, p_text in enumerate(paragraphs):
