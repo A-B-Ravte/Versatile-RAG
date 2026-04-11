@@ -1,5 +1,6 @@
 import fitz
 import os
+from dto.page_dto import Page
 
 class SingleDocument():
     def __init__(self, doc_path : str):
@@ -15,12 +16,9 @@ class SingleDocument():
 
         for page_no, page in enumerate(doc, start=1):
             text = page.get_text('text')
-            pages.append({
-                'page_no':page_no,
-                'text':text,
-                'source': self.doc_path
-            })   
+            pages.append(Page(page_no=page_no, text = text, source = self.doc_path))
 
+        doc.close()
         return pages
 
 class MultipleDocuments():

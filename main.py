@@ -1,5 +1,8 @@
 from llm.llamma_cpp_wrapper import LlammaLocal
 from data_loader.document_reader import SingleDocument
+from chunking.chunk_engine import ChunkEngine
+from chunking.strategies.paragraph_split import ParagraphChunker
+from chunking.strategies.simple_chunker import SimpleChunker
 
 #============ model - infrence test ========================
 '''
@@ -27,5 +30,16 @@ data_load = SingleDocument(pdf_path)
 
 pages = data_load.read_document()
 
-for page in pages:
-    print(page['page_no'])
+
+#==================chunking test====================    
+
+strategy_1 = ParagraphChunker()
+
+strategy_2 = SimpleChunker(chunk_size=200, overlap=50)
+
+engine = ChunkEngine(strategies=[strategy_1, strategy_2])
+
+final_chunks = engine.process(pages)
+
+print(f"Total Chunks Created: {len(final_chunks)}")
+print(final_chunks[0]) # See the structure
