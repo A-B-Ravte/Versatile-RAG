@@ -1,6 +1,8 @@
 from llm.llamma_cpp_wrapper import LlammaLocal
+from data_loader.document_reader import SingleDocument
 
-
+#============ model - infrence test ========================
+'''
 model_path = r"models/LlammaLocalModel/qwen2.5-coder-7b-instruct.Q4_K_M.gguf"
 llm = LlammaLocal.get_instance(model_path)
 
@@ -15,3 +17,15 @@ response = llm(
     )
 
 print(response['choices'][0]['text'])
+
+'''
+#============  data_loader test ========================
+
+pdf_path = r'D:\aakash\Agentic AI\Versatile_RAG\data\documets\sample.pdf'
+
+data_load = SingleDocument(pdf_path)
+
+pages = data_load.read_document()
+
+for page in pages:
+    print(page['page_no'])

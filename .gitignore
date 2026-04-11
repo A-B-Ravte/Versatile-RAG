@@ -16,6 +16,7 @@ outputs/
 *.safetensors
 *.bin
 *.pth
+data/
 
 # Logs & cache
 *.log

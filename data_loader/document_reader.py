@@ -17,7 +17,8 @@ class SingleDocument():
             text = page.get_text('text')
             pages.append({
                 'page_no':page_no,
-                'text':text
+                'text':text,
+                'source': self.doc_path
             })   
 
         return pages
