@@ -3,6 +3,7 @@ from data_loader.document_reader import SingleDocument
 from chunking.chunk_engine import ChunkEngine
 from chunking.strategies.paragraph_split import ParagraphChunker
 from chunking.strategies.simple_chunker import SimpleChunker
+from sentence_transformers import SentenceTransformer
 
 #============ model - infrence test ========================
 '''
@@ -21,10 +22,10 @@ response = llm(
 
 print(response['choices'][0]['text'])
 
-'''
+
 #============  data_loader test ========================
 
-pdf_path = r'D:\aakash\Agentic AI\Versatile_RAG\data\documets\sample.pdf'
+pdf_path = r'D:/aakash/Agentic AI/Versatile_RAG/data/documets/sample.pdf'
 
 data_load = SingleDocument(pdf_path)
 
@@ -43,3 +44,13 @@ final_chunks = engine.process(pages)
 
 print(f"Total Chunks Created: {len(final_chunks)}")
 print(final_chunks[0]) # See the structure
+'''
+
+query = 'I am the new agentic bot in the future'
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+chunk_texts = [query]
+
+embedding = model.encode(chunk_texts)[0]
+print(embedding)

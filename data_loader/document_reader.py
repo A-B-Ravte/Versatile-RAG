@@ -23,7 +23,7 @@ class SingleDocument():
 
 class MultipleDocuments():
     def __init__(self, directory_path: str):
-        self_directory = directory_path
+        self.directory_path = directory_path
 
     def read_documents_from_directory(self)-> list :
         pass  

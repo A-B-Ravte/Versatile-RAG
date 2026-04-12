@@ -8,7 +8,7 @@ class ChunkEngine:
     def __init__(self, strategies: List[BaseChunker]):
         self.strategies = strategies
 
-    def process(self, pages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def process(self, pages: List[Page]) -> List[Chunk]:
         
         current_chunks = []
         for page in pages:
