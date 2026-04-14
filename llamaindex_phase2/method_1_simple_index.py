@@ -1,6 +1,6 @@
 from llama_index.core import VectorStoreIndex
 
-from base_pipeline import BaseRAGPipeline
+from llamaindex_phase2.base_pipeline import BaseRAGPipeline
 
 
 class Method1SimpleIndexPipeline(BaseRAGPipeline):

@@ -3,7 +3,7 @@ from llama_index.core.node_parser import SemanticSplitterNodeParser
 from llama_index.core.retrievers import VectorIndexRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
 
-from base_pipeline import BaseRAGPipeline
+from llamaindex_phase2.base_pipeline import BaseRAGPipeline
 
 
 class Method4VectorRetrieverPipeline(BaseRAGPipeline):

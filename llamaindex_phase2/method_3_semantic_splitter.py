@@ -1,7 +1,7 @@
 from llama_index.core import VectorStoreIndex, Settings
 from llama_index.core.node_parser import SemanticSplitterNodeParser
 
-from base_pipeline import BaseRAGPipeline
+from llamaindex_phase2.base_pipeline import BaseRAGPipeline
 
 
 class Method3SemanticSplitterPipeline(BaseRAGPipeline):

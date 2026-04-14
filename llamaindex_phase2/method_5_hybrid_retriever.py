@@ -5,7 +5,7 @@ from llama_index.core.retrievers.fusion_retriever import FUSION_MODES
 from llama_index.retrievers.bm25 import BM25Retriever
 from llama_index.core.query_engine import RetrieverQueryEngine
 
-from base_pipeline import BaseRAGPipeline
+from llamaindex_phase2.base_pipeline import BaseRAGPipeline
 
 
 class Method5HybridRetrieverPipeline(BaseRAGPipeline):
