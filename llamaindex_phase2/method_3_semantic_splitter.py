@@ -1,36 +1,27 @@
 from llama_index.core import VectorStoreIndex, Settings
 from llama_index.core.node_parser import SemanticSplitterNodeParser
 
-from common import (
-    parse_args,
-    configure_embedding,
-    configure_llm,
-    load_documents,
-    print_response,
-)
+from base_pipeline import BaseRAGPipeline
 
 
-def run(doc_path: str, llm_name: str, query: str):
-    configure_embedding()
-    configure_llm(llm_name)
+class Method3SemanticSplitterPipeline(BaseRAGPipeline):
+    def build_query_engine(self):
+        parser = SemanticSplitterNodeParser(
+            embed_model=Settings.embed_model,
+            breakpoint_percentile_threshold=85
+        )
 
-    documents = load_documents(doc_path)
+        nodes = parser.get_nodes_from_documents(self.documents)
+        print(f"Created {len(nodes)} semantic chunks")
 
-    parser = SemanticSplitterNodeParser(
-        embed_model=Settings.embed_model,
-        breakpoint_percentile_threshold=85
-    )
-
-    nodes = parser.get_nodes_from_documents(documents)
-    print(f"Created {len(nodes)} semantic chunks")
-
-    index = VectorStoreIndex(nodes)
-    query_engine = index.as_query_engine(similarity_top_k=3)
-
-    response = query_engine.query(query)
-    print_response(response)
+        index = VectorStoreIndex(nodes)
+        return index.as_query_engine(similarity_top_k=3)
 
 
 if __name__ == "__main__":
-    args = parse_args(default_query="What qualifications are required?")
-    run(args.doc_path, args.llm, args.query)
+    pipeline = Method3SemanticSplitterPipeline(
+        doc_path="D:/aakash/Agentic AI/Data/JD.pdf",
+        llm_name="llama_cpp",
+        query="What qualifications are required?"
+    )
+    pipeline.execute()
