@@ -77,7 +77,7 @@ def configure_llm(llm_name: str):
             context_window=4096,
             generate_kwargs={
                 "top_p": 0.9,
-                "repeat_penalty": 1.1,
+                "repeat_penalty": 1.2,
             },
             model_kwargs={
                 "n_threads": 4,
@@ -100,7 +100,7 @@ def load_documents(doc_path: str):
 def print_response(response):
     print("\n=== ANSWER ===\n")
     print(response)
-
+    
     if hasattr(response, "source_nodes"):
         print("\n=== RETRIEVED NODES ===\n")
         for i, node in enumerate(response.source_nodes, start=1):
@@ -111,3 +111,4 @@ def print_response(response):
             print(f"[{i}] Page: {page} | Score: {score_str}")
             print(node.text[:200])
             print("-" * 80)
+            

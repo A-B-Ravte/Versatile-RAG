@@ -1,4 +1,4 @@
-from typing import Type
+from typing import Type, ClassVar
 from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 
@@ -17,9 +17,7 @@ class PipelineToolInput(BaseModel):
 
 class _BasePipelineTool(BaseTool):
     args_schema: Type[BaseModel] = PipelineToolInput
-    pipeline_cls = None
-    name: str = ""
-    description: str = ""
+    pipeline_cls: ClassVar[type | None] = None
 
     def _run(self, doc_path: str, query: str, llm_name: str = "llama_cpp") -> str:
         pipeline = self.pipeline_cls(
@@ -32,30 +30,30 @@ class _BasePipelineTool(BaseTool):
 
 
 class Method1Tool(_BasePipelineTool):
-    name = "method_1_simple_index_tool"
-    description = "Use simple VectorStoreIndex plus QueryEngine. Best for fast, low-complexity RAG."
-    pipeline_cls = Method1SimpleIndexPipeline
+    name: str = "method_1_simple_index_tool"
+    description: str = "Use simple VectorStoreIndex plus QueryEngine. Best for fast, low-complexity RAG."
+    pipeline_cls: ClassVar[type] = Method1SimpleIndexPipeline
 
 
 class Method2Tool(_BasePipelineTool):
-    name = "method_2_sentence_splitter_tool"
-    description = "Use SentenceSplitter plus VectorStoreIndex plus QueryEngine. Best when overlap and controlled chunking help."
-    pipeline_cls = Method2SentenceSplitterPipeline
+    name: str = "method_2_sentence_splitter_tool"
+    description: str = "Use SentenceSplitter plus VectorStoreIndex plus QueryEngine. Best when overlap and controlled chunking help."
+    pipeline_cls: ClassVar[type] = Method2SentenceSplitterPipeline
 
 
 class Method3Tool(_BasePipelineTool):
-    name = "method_3_semantic_splitter_tool"
-    description = "Use SemanticSplitterNodeParser plus VectorStoreIndex plus QueryEngine. Best for semantically dense documents."
-    pipeline_cls = Method3SemanticSplitterPipeline
+    name: str = "method_3_semantic_splitter_tool"
+    description: str = "Use SemanticSplitterNodeParser plus VectorStoreIndex plus QueryEngine. Best for semantically dense documents."
+    pipeline_cls: ClassVar[type] = Method3SemanticSplitterPipeline
 
 
 class Method4Tool(_BasePipelineTool):
-    name = "method_4_vector_retriever_tool"
-    description = "Use SemanticSplitterNodeParser plus explicit VectorIndexRetriever plus QueryEngine. Best when you want retriever control."
-    pipeline_cls = Method4VectorRetrieverPipeline
+    name: str = "method_4_vector_retriever_tool"
+    description: str = "Use SemanticSplitterNodeParser plus explicit VectorIndexRetriever plus QueryEngine. Best when you want retriever control."
+    pipeline_cls: ClassVar[type] = Method4VectorRetrieverPipeline
 
 
 class Method5Tool(_BasePipelineTool):
-    name = "method_5_hybrid_retriever_tool"
-    description = "Use SemanticSplitterNodeParser plus VectorIndexRetriever plus BM25Retriever plus QueryFusionRetriever plus QueryEngine. Best for mixed semantic and keyword queries."
-    pipeline_cls = Method5HybridRetrieverPipeline
+    name: str = "method_5_hybrid_retriever_tool"
+    description: str = "Use SemanticSplitterNodeParser plus VectorIndexRetriever plus BM25Retriever plus QueryFusionRetriever plus QueryEngine. Best for mixed semantic and keyword queries."
+    pipeline_cls: ClassVar[type] = Method5HybridRetrieverPipeline
