@@ -1,4 +1,4 @@
-# 🚀 Versatile Autonomous Adaptive Agentic RAG
+#  Versatile Autonomous Adaptive Agentic RAG
 
 A production-ready, **domain-agnostic Retrieval-Augmented Generation (RAG) platform** that can work with **any document and any query**. Instead of forcing one fixed pipeline for every use case, the system is designed to **adaptively choose the right chunking and retrieval strategy** based on document structure and query intent.
 
